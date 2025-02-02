@@ -1,0 +1,16 @@
+function doPost(e) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Users");
+  var data = sheet.getDataRange().getValues();
+  
+  var username = e.parameter.username;
+  var result = "User not found";
+  
+  for (var i = 1; i < data.length; i++) {
+    if (data[i][2] == username) {
+      result = data[i][5];
+      break;
+    }
+  }
+  
+  return ContentService.createTextOutput(result);
+}

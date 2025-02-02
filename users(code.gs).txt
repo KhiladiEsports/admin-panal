@@ -1,0 +1,11 @@
+function getSheetData() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("users");
+  var data = sheet.getDataRange().getValues();
+  data.shift();
+
+  return JSON.stringify(data);
+}
+
+function doPost(e) {
+  return ContentService.createTextOutput(getSheetData()).setMimeType(ContentService.MimeType.JSON);
+}
